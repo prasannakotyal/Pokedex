@@ -2,9 +2,9 @@
 
 A web-based Pokedex built with FastAPI that retrieves and displays Pokemon information using the [PokeAPI](https://pokeapi.co/).
 
-![Pokedex Screenshot](https://github.com/prasannakotyal/Pokedex/blob/master/outputs/charizard.png)
+![Pokedex Screenshot](https://github.com/prasannakotyal/Pokedex/blob/master/images/charizard.png)
 
-![Pokedex Screenshot](https://github.com/prasannakotyal/Pokedex/blob/master/outputs/mewtwo.png)
+![Pokedex Screenshot](https://github.com/prasannakotyal/Pokedex/blob/master/images/mewtwo.png)
 
 ## Features
 
