@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        .container { max-width: 800px; padding: 2rem; }
+        .pokemon-image { max-width: 300px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title has-text-centered">Pokedex</h1>
+        
+        <form method="post">
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="name" placeholder="Enter Pokemon name" required>
+                </div>
+                <div class="control">
+                    <button type="submit" class="button is-primary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        {% if error %}
+            <div class="notification is-danger">{{ error }}</div>
+        {% endif %}
+
+        {% if result %}
+            <div class="box">
+                <div class="columns">
+                    <div class="column">
+                        <figure class="image pokemon-image">
+                            <img src="{{ result.image }}" alt="{{ result.name }}">
+                        </figure>
+                    </div>
+                    <div class="column">
+                        <h2 class="title is-4">{{ result.name }} #{{ result.id }}</h2>
+                        <div class="tags">
+                            {% for type in result.types %}
+                                <span class="tag is-primary">{{ type }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <p class="subtitle is-5 mt-4">Description:</p>
+                        <p>{{ result.description }}</p>
+                        
+                        <p class="subtitle is-5 mt-4">Physical Characteristics:</p>
+                        <p>Height: {{ result.height }} m</p>
+                        <p>Weight: {{ result.weight }} kg</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <p class="subtitle is-5">Stats:</p>
+                    <div class="columns">
+                        {% for stat, value in result.stats.items() %}
+                            <div class="column">
+                                <p><strong>{{ stat }}:</strong> {{ value }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <p class="subtitle is-5">Abilities:</p>
+                    <div class="tags">
+                        {% for ability in result.abilities %}
+                            <span class="tag is-info">{{ ability }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="columns mt-4">
+                        <div class="column">
+                            <p class="subtitle is-5 has-text-danger">Weak Against:</p>
+                            <div class="tags">
+                                {% for weakness in result.weaknesses %}
+                                    <span class="tag is-danger">{{ weakness|capitalize }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="column">
+                            <p class="subtitle is-5 has-text-success">Strong Against:</p>
+                            <div class="tags">
+                                {% for strength in result.strengths %}
+                                    <span class="tag is-success">{{ strength|capitalize }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
